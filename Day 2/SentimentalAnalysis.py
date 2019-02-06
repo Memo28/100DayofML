@@ -13,12 +13,14 @@ auth.set_access_token(access_token,access_token_secret)
 
 api = tweepy.API(auth)
 
+#Palabra a buscar en el Tweet
 public_tweets = api.search("Tamales")
 
 positive = ["Positive"]
 negative = ["Negative"]
 
 for tweet in public_tweets:
+  #Analisis usando Textblob
   analysis = TextBlob(tweet.text)
   value = analysis.sentiment.polarity
   #Si la polaridad es mayor que 0.5 eso indica que es un buen comentario
@@ -27,6 +29,7 @@ for tweet in public_tweets:
   else:
   	negative.append("Porcentaje:" + str(value) + "Tweet: " + tweet.text )
 
+#Guardamos los tweets en el CSV 
 with open('Analisis.csv', 'a',encoding='utf-8') as writeFile:
 	writer = csv.writer(writeFile)
 	writer.writerow(positive)
