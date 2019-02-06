@@ -1,7 +1,8 @@
 import csv 
 import numpy as np 
 from sklearn.svm import SVR
-import matploitlib.pyplot as plt 
+import matplotlib.pyplot as plt 
+plt.switch_backend('TKAgg')  
 
 dates = []
 prices = []
@@ -20,9 +21,9 @@ def getData(filename):
 		return
 
 #Creamos el modelo de predición
-def predictPrices(dates,prices,x)
+def predictPrices(dates,prices,x):
 	#Recreamos el arreglo y lo pasamos a un arreglo de una sola dimension
-	dates = np.reshap(dates,len(dates),1)
+	dates = np.reshape(dates,(len(dates),1))
 	#Creamos un Support Vector Machine
 	#un SVM trabaja con datos que ya estan estan clasificados
 	#e intenta meter datos que aun no estan clasificados dentro de una clase
@@ -31,9 +32,9 @@ def predictPrices(dates,prices,x)
 	#el siguiente valor, a lo que se le llama un SVR
 	#kernal = tipo de SVM
 	#C es el error posible
-	svrLen = SVR(kernal="linear",C=1e3)
-	svrPoly = SVR(kernal="poly",C=1e3)
-	svrRbf = SVR(kernal="rbf",C=1e3,gamma=0.1)
+	svrLen = SVR(kernel="linear",C=1e3)
+	svrPoly = SVR(kernel="poly",C=1e3)
+	svrRbf = SVR(kernel="rbf",C=1e3,gamma=0.1)
 
 	#Entrenamos los modelos
 	svrLen.fit(dates,prices)
